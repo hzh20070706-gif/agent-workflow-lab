@@ -4,15 +4,14 @@ A serious-looking, local-first AI workflow playground for composing prompt, tran
 
 ## What it demonstrates
 
-- Visual node graph with explicit inputs and outputs
+- Visual node graph with position-derived execution order
 - Draft, validate, run, duplicate, and reset workflows
 - Deterministic local execution with step-by-step trace logs
 - Prompt templates with {{input}} and {{context}} variables
 - JSON import/export for workflow portability
-- Version snapshots with labels and timestamps
-- Run history, latency, token estimates, and status badges
-- Built-in evaluation cases for relevance and format checks
-- Provider adapter panel that keeps credentials out of the static client
+- Version labels for duplicated drafts
+- Run history, latency, pass rate, and status badges
+- Runtime pass-rate summary for evaluator nodes
 - Keyboard-friendly controls and responsive layout
 
 ## Run
@@ -21,7 +20,7 @@ Open `index.html` in a modern browser. No build step, dependency, server, networ
 
 ## Architecture
 
-The graph is represented as a JSON workflow: nodes contain a type, configuration, and position; edges connect node IDs. The local runtime topologically orders nodes and evaluates each node with a deterministic function:
+The graph is represented as JSON: nodes contain a type, configuration, and canvas position. The current static runtime evaluates nodes from left to right by their `x` position and renders matching visual connectors. This keeps the execution model deterministic and easy to inspect:
 
 - **Input** normalizes the run payload.
 - **Prompt** interpolates variables and records the rendered prompt.
