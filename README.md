@@ -38,4 +38,4 @@ The static demo does not make network requests and never submits provider keys. 
 
 ## License
 
-MIT © 2026 hzh20070706-gif.
+MIT © 2026 hzh6767.
